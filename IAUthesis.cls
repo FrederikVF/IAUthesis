@@ -1,4 +1,4 @@
-\ProvidesClass{IAUthesis}[2026/05/01 v1.0 Documentclass for a thesis at the IAU]
+\ProvidesClass{IAUthesis}[2026/05/01 v1.0.0 Documentclass for a thesis at the IAU]
 
 % set if flags
 \newif\ifgerman
