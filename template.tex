@@ -1,0 +1,88 @@
+\documentclass[11pt, todonotes]{IAUthesis}
+
+% document informations
+\title{<title>}
+\author{<author>}
+\date{<hand-in date>}
+\firstreviewer{<first reviewer name>}
+\secondreviewer{<second reviewer name>}
+\thesistype{e.g. Master Thesis}
+\thesisdegree{e.g. B.Sc. Meteorology}
+\acknowledgements{<acknowledgements>}
+\abstracttext{<abstracttext>}
+
+% references
+\addbibresource{library.bib}
+
+% colors
+\definecolor{hotpink}{rgb}{1.00, 0.00, 0.83}
+
+% abbreviations
+\newabbreviation{bsc}{B.Sc.}{Bachelor of Science}
+\glssetwidest{B.Sc.~~} % The tildes produce some extra space.
+
+\begin{document}
+\maketitle\glsresetall
+\chapter{<first chapter title>}
+This is my introduction. 
+This template was created by \citet{IAUthesis}. 
+This is the "first paragraph".
+
+This is the second paragraph, directly following the first \smallskip
+
+This paragraph has a small distance to the previous. \medskip
+
+This one has a medium distance.\bigskip
+
+This paragraph has a big distance to the previous. 
+Isn’t that lovely? \todo[color=hotpink]{add source}
+
+\chapter{Methodology}
+These are interesting methods.
+
+\section{First Method}
+I did this. \Glspl{bsc} is the plural of \gls{bsc} when using abbreviations.
+
+\subsection{A Detail}
+This is part of the first method.
+
+\subsection{Another Detail}\glsreset{bsc}
+Also belongs to the first method. 
+Here I have reset the \gls{bsc} abbreviations so it shows long again.
+\cleardoublepage
+
+\section{Second Method}
+I also did this \citep{IAUthesis}. 
+Don't refer to Figure \ref{fig:label} (it is \SI{5}{\centi\meter} wide).
+Rather look at Table \ref{tab:label}!
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=5cm]{GU-Logo-blau-gross.png}
+\caption[<short caption>]{<long caption>\citep{GUlogo}\label{fig:label}}
+\end{figure}
+\begin{table}[htbp]
+\centering
+\caption[<short caption>]{<long caption>\label{tab:label}}
+\begin{tabular}{r|r}
+<col1> & <col2> \\
+\hline
+<num1> & <num2> \\
+\end{tabular}
+\end{table}
+
+\chapter{Discussion}
+This is the last part of my main content.
+Hereafter, only the appendix follows.
+
+\cleardoublepage\pagestyle{appendix}\appendix
+\printnoidxglossary[title={\abbrtitle}]
+
+\chapter{Additional Material}
+Here I can add as many figures, tables, and as much code as I want.
+Anything my heart desires.
+
+\printbibliography[heading=bibnumbered, title={\bibtitle}]
+
+\listoftodos
+\end{document}

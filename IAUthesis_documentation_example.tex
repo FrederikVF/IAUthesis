@@ -1,0 +1,391 @@
+\documentclass[12pt, todonotes, nodeclaration, oneside, fancypagenumbers, notof, notot, noabstract]{IAUthesis}
+
+\addbibresource{library.bib}
+
+\definecolor{hotpink}{rgb}{1.00, 0.00, 0.83}
+
+\title{Documentation and Example of the\\IAU thesis \LaTeX~Documentclass}
+\author{Frederik Luis Vieira Fischer}
+\date{\today}
+\thesistype{IAUthesis}
+\thesisdegree{Documentation}
+\contact{e-mail:~\href{mailto:contact@frederik.vieirafischer.de}{contact@frederik.vieirafischer.de}\\github:~\href{https://github.com/FrederikVF/IAUthesis}{github.com/FrederikVF/IAUthesis}\\matrix:~@flvf:matrix.org}
+\acknowledgements{%
+\noindent I want to thank all students of the IAU. Without you this would have been buried by time. You kept asking for a template and now this thing exists. I hope this is of any use to you.}
+
+%\abstracttext{}
+\newcommand{\code}[1]{\colorbox{black!10!white}{\texttt{#1}}}
+
+\newabbreviation{bsc}{B.Sc.}{Bachelor of Science}
+\glssetwidest{B.Sc.~~}
+
+\begin{document}
+\maketitle\glsresetall
+\chapter{About this Documentclass}
+The \code{IAUthesis} is an unofficial documentclass for writing a thesis or a project report at the Institute for Atmospheric and Environmental Sciences at the Goethe University Frankfurt. This document you are currently reading functions both as a deocumentation and an example of the IAUthesis documentclass.\medskip
+
+This started with my master thesis, for which I put a lot of work into exactly recreating the layout in \LaTeX~which the examination office was asking for. Later I made some changes to this layout for my master thesis. Now this has finally evolved into a documentclass, which makes it much nicer to handle and provides you with many options.\medskip
+
+If you find any bug or want features, please reach out to me. You find my contact information on the bottom left of the titlepage. Ideally you go to \href{https://github.com/FrederikVF/IAUthesis}{github (link)}, create a fork, and then later make a pull request with the bugfix or feature. You can also create an \href{https://github.com/FrederikVF/IAUthesis/issues}{issue (link)} there.\bigskip
+
+\noindent I wish you good luck and all the best for your thesis or report!\smallskip
+
+Best, Frederik
+
+\chapter{Documentclass Options}
+The Documentclass options are what the "words" you put into the rectangular brackets of the \verb|\documentclass[<options>]{IAUthesis}| command, which usually sits in the first line of the document and tells \LaTeX a lot about the layout. The options activate or deactivate features, can change the layout, and other settings.
+
+\section{The minimum you need}
+If you just want do write you don't need to pass any class options although you might want to use \code{11pt} or \code{12pt} to adjust the documents fontsize.
+
+I'd also recommend to use \code{todonotes} as option. This enables you write notes wherever you want in the text simply by writing \code{\textbackslash{}todo\{ToDo: Nothing.\}}.\todo{ToDo:\quad Nothing.} When you want to hand your thesis in, just remove this option and all notes in the PDF will disappear.
+
+For the \emph{project report}, which typically isn't printed, you might want to consider the \code{oneside} and \code{nodeclaration} options.
+
+Finally you may want to change the language of the document to German. In this case you simply need to pass the option \code{german} to the documentclass.\medskip
+
+\noindent In conclusion the recommended documentclass command should look similar to one of the following:
+
+\noindent\texttt{\textbackslash{}documentclass[11pt, todonotes]\{IAUthesis\}\\\textbackslash{}documentclass[11pt, todonotes, german]\{IAUthesis\}\\\textbackslash{}documentclass[12pt]\{IAUthesis\}\\\textbackslash{}documentclass[12pt, oneside, nodeclaration]\{IAUthesis\}}
+
+\noindent However, there are more options, which you can discover in the following section.
+
+\clearpage
+\section{Description of all Documentclass Options}\label{sec:dco}
+\begin{description} 
+\item[\code{german}] Changes the document language to German, affecting titles and default texts.
+\item[\code{english}]{\textbf{(default)}} Provides English titles and texts.
+\item[\code{noabstract}] Hides the abstract section.
+\item[\code{noacknowledgements}] Hides the acknowledgements section.
+\item[\code{nodeclaration}] Hides the declaration page (CAUTION! important for a thesis). 
+\item[\code{notoc}] Removes the table of contents from the frontmatter.
+\item[\code{notof}] Removes the list of figures from the frontmatter.
+\item[\code{notot}] Removes the list of tables from the frontmatter.
+\item[\code{noams}] Prevents the default loading of \texttt{amsmath}, \texttt{amsthm} and \texttt{amssymb}.
+\item[\code{oneside}] Uses a single-sided layout suitable for the project report or PDF distribution.
+\item[\code{twoside}]{\textbf{(default)}} This option provides a two-sided layout for print. Especially for an adhesive binding, which is typical for a Bachelor or Master thesis.
+\item[\code{fancypagenumbers}] Changes the page-numbering in the frontmatter to lowercase roman numbers and counts them separately.
+\item[\code{largemargins}] Increases the margins around the text. Reduces the text-area from $\SI{23}{\centi\meter}\times\SI{16}{\centi\meter}$ to $\SI{20}{\centi\meter}\times\SI{15}{\centi\meter}$, which can be favourable for a Bachelor Thesis.
+\item[\code{todonotes}] Enables todonotes: This enables you to write notes wherever you want in the text by writing \texttt{\textbackslash{}todo\{HI!\}}.\todo{HI!} 
+
+You can change the colors of the notes: \texttt{\textbackslash{}todo[color=blue!30!white]\{lightblue\}}.\todo[color=blue!30!white]{lightblue}
+
+With \texttt{\textbackslash{}listoftodos} you get a list of all your notes. You find an example at the end of the document. When you want to hand your thesis in, just remove the option \texttt{todonotes} from the \texttt{\textbackslash{}documentclass[]\{IAUthesis\}} command and all notes in the PDF will disappear.
+\end{description}
+
+\chapter{Customizing the Document}
+There are several commands to customize the document further after you have chosen the documentclass options you like. Everything here goes into the "head" of the document, this means it goes after \verb|\documentclass[]{}| and before \texttt{\textbackslash begin\{document\}}.
+
+\begin{description} 
+\item[\code{\textbackslash title\{<text>\}}] The title of your document. Example: \texttt{\textbackslash title\{Topic of my Thesis\}} 
+\item[\code{\textbackslash author\{<name>\}}] The author name(s) printed on the title page.\\Example: \texttt{\textbackslash author\{My Name\}} 
+\item[\code{\textbackslash date\{<date>\}}] The date printed on the title page. Example: \texttt{\textbackslash date\{19.02.2026\}} 
+\item[\code{\textbackslash firstreviewer\{<name>\}}] Sets the first reviewer name used in the Supervisor block. Example: \texttt{\textbackslash firstreviewer\{Prof. Lorem\}} 
+\item[\code{\textbackslash secondreviewer\{<name>\}}] Sets the second reviewer name used in the contact block. Example: \texttt{\textbackslash secondreviewer\{Dr. Ipsum\}} 
+\item[\code{\textbackslash abstracttext\{<text>\}}] Sets the text for the abstract section in the frontmatter. You can write a lot and also use linebreaks. Example: \\\texttt{\textbackslash abstracttext\{This thesis investigates\dots\}} 
+\item[\code{\textbackslash acknowledgements\{<text>\}}] Sets the text for the acknowledgements section in the frontmatter. You can write a lot and also use linebreaks.\\Example: \texttt{\textbackslash acknowledgements\{Thanks to colleagues and family.\}} 
+\item[\code{\textbackslash thesistype\{<text>\}}] Sets the thesis type label shown on the title page (e.g., "Thesis", "Master Thesis"). Example: \texttt{\textbackslash thesistype\{Master Thesis\}} 
+\item[\code{\textbackslash thesisdegree\{<text>\}}] Sets the degree line printed under the thesis type (e.g., "MSc in Something"). Example: \\\texttt{\textbackslash thesisdegree\{M.Sc. Atmospheric and Climate Sciences\}} 
+\item[\code{\textbackslash affiliation\{<text>\}}]{\textbf{(optional)}} Sets the affiliation block shown on the title page. The \emph{Institute for Atmospheric and Environmental Sciences} is set as a default.\\Example: \texttt{\textbackslash affiliation\{Institute,\textbackslash\textbackslash University\}} 
+\item[\code{\textbackslash declarationtext\{<text>\}}]{\textbf{(optional)}} Changes the Text of the declaration. You can get the default text with the command \texttt{\textbackslash declarationdefault}. Example: \begin{verbatim}
+  \declarationtext{\declarationdefault\bigskip\par
+  \noindent This is an additional sentence in the declaration.}
+\end{verbatim}
+\item[\code{\textbackslash contact\{<text>\}}]{\textbf{(optional)}} CAUTION! Overrides the supervisors block. When this command is used no supervisors will be displayed, only the contact info. Example:\\ \texttt{\textbackslash contact\{Contact:\textbackslash\textbackslash contact@frederik.vieirafischer.de\textbackslash\textbackslash @flvf:matrix.org\}}
+\item[\code{\textbackslash newabbreviation\{<tag>\}\{<abbreviation>\}\{<full-text>\}}] Define a new abbreviation which can be used in the document and will be explained, when it is first called and in the Abbreviations section in the appendix.\\Example: \texttt{textbackslash newabbreviation\{bsc\}\{B.Sc.\}\{Bachelor of Science\}}\\For further information refer to the manual:\\ \url{https://ctan.org/pkg/glossaries-extra}
+\item[\code{\textbackslash glssetwidest\{<abbreviation>\}}] Sets the length of the longest abbreviation for the \emph{Abbreviations} Section. Example: \texttt{\textbackslash glssetwidest\{B.Sc.\}}
+\end{description}
+
+\chapter{The Body of the Document}
+This chapter describes the body of the documents as well as some options provided to you. This is everything between \code{\textbackslash begin\{document\}} and \code{\textbackslash end\{document\}}.
+
+\section{Document Structure}
+The document usually consists of the frontmatter, the main content, and the appendix. Each of the sections are explained shortly in the following. Throughout the entire document the text-area has the size of $\SI{23}{\centi\meter}\times\SI{16}{\centi\meter}$.
+\subsection{Frontmatter}
+This is starts with the titlepage and includes the declaration, acknowledgements, abstract, table of contents, list of figures, and list of tables. This documentclass is setup in a manner, that you don't need to worry about any of that. The \code{\textbackslash maketitle} command takes care of it, however you need to provide some information. If you want to remove a section from the frontmatter, refer to the documentclass options. Example:
+\begin{verbatim}
+\documentclass[11pt]{IAUthesis}
+	\title{<title>}
+	\author{<author>}
+	\date{<hand-in date>}
+	\firstreviewer{<first reviewer name>}
+	\secondreviewer{<second reviewer name>}
+	\thesistype{e.g. Master Thesis}
+	\thesisdegree{e.g. B.Sc. Meteorology}
+	\acknowledgements{<acknowledgements>}
+	\abstracttext{<abstracttext>}
+\begin{document}
+\maketitle
+\chapter{<first chapter title>}
+\end{verbatim}
+\subsection{Main Content}
+Here is where all your text, formulas, figures, and so fourth reside. You typically split it into major parts like the introduction, the objectives, the theoretical background, the methodology, the results, and the discussion. This can look like this:
+\begin{verbatim}
+\chapter{Methodology}
+These are interesting methods.
+\section{First Method}
+I did this.
+\subsection{A Detail}
+This is part of the first method.
+\subsection{Another Detail}
+Also belongs to the first method.
+\section{Second Method}
+I also did this.
+\end{verbatim}
+In theory you can also use \texttt{\textbackslash subsubsection} and \texttt{\textbackslash subsubsubsection}, however, I wouldn't recommend that, because from the perspective of the reader the document will lack internal cohesion. Ask yourself: "Is this really another section or just another paragraph?"
+
+You can also use numbered and unnumbered lists, as well as starred (sub)sections (\texttt{\textbackslash section*\{\}}). The latter will appear as a heading, but without a number and without appearing in the table of contents. This can be a good tool to add a bit of structure without emphasising the section as being  a "stand-alone" thing of itself.
+
+\subsection{Appendix}
+This is at the end of the document, where the abbreviations, additional material, and the bibliography reside. You can add whatever you want to the additional materials and create as many chapters as you like. They work the same as chapters in the main content, but are marked as appendix. Example:
+\begin{verbatim}
+\chapter{Discussion}
+This is the last part of my main content.
+Hereafter, only the appendix follows.
+
+\cleardoublepage\appendix\pagestyle{appendix}
+\printnoidxglossary[title={\abbrtitle}]
+
+\chapter{Additional Material}
+Here I can add as many figures, tables, and as much code as I want.
+Anything my heart desires.
+
+\printbibliography[heading=bibnumbered, title={\bibtitle}]
+\end{document}
+\end{verbatim} 
+\section{Useful Commands and Tricks}
+In this section I'll present you a few commands and useful tricks this documentclass is set up to perform.
+\subsection{Paragraphs and Pagebreaks}
+The first and most important thing: \textbf{Do not use the double backslash! (No \textbackslash\textbackslash~!)} They are very inflexible and will make \LaTeX~struggle trying to set your document. If you want to start a new paragraph, you just need to leave an empty line before continuing with your text. If you want to have more space between two paragraphs, there are three commands you can use:
+\begin{verbatim}
+1 This is the first paragraph.
+2 
+3 This is the second paragraph, directly following the first.\smallskip
+4 
+5 This paragraph has a small distance to the previous. \medskip
+6 
+7 This one has a medium distance.\bigskip
+8
+9 This paragraph has a big distance to the previous. Isn't that lovely?
+\end{verbatim}\bigskip
+If you don't want a paragraph starting with an indent, put \code{\textbackslash noindent } at the beginning of the line. For page breaks there are two commands.
+\begin{description}
+\item[\code{\textbackslash clearpage}] This will leave the rest of the page empty and start a new one.
+\item[\code{\textbackslash cleardoublepage}]{(twoside documents only)} This will leave the rest of the page empty, and if necessary also the next page. Whatever you write hereafter, appears on the next right (odd) page.
+\end{description}
+\subsection{Citing Sources and Bibliography}
+This documentclass comes fully set up for handling sources. You just add your \verb|.bib| library file with \code{\textbackslash addbibresource\{<.bib file>\}} in the head of the document (after \verb|\documentclayy[]{}| and before \verb|\begin{document}|). Your primary two commands to cite sources are \code{\textbackslash citep} and \code{\textbackslash citet}.
+\begin{description}
+\item[\code{\textbackslash citep}] This command will put your sources in parentheses:
+
+\verb|\citep{IAUthesis}| will return: \citep{IAUthesis}
+
+\verb|\citep{IAUthesis, IAUthesis}| will return: \citep{IAUthesis, IAUthesis}
+\item[\code{\textbackslash citet}] Is for direct references within a sentence. \verb|"\citet{IAUthesis} did something."| will return: "\citet{IAUthesis} did something."
+\end{description}
+
+\noindent The Bibliography is usually at the end of the document as the last chapter in the appendix:
+\begin{verbatim}
+\cleardoublepage\appendix\pagestyle{appendix}
+...
+\printbibliography[heading=bibnumbered, title={\bibtitle}]
+\end{document}
+\end{verbatim}
+
+\subsection{Figures, Tables, and Captions}
+For figures and tables you should use the \code{figure} and \code{table} environments. For the captions this documentclass further includes the \texttt{captions} package, which enable you to write an additional short caption, which will be displayed in the list of figures or list of tables respectively. The \code{<short caption>} should only hint towards the contents of the figure/table and you should not be so long that it leads to a linebreak (although this is sometimes okay). The \code{<long description>} should describe the figure/table in much more detail. Examples:
+\begin{verbatim}
+\begin{figure}[<positioning>]
+\centering
+\includegraphics[width=<width>]{<file>}
+\caption[<short caption>]{<long caption>\label{<label>}}
+\end{figure}
+\begin{table}[<positioning>]
+\centering
+\caption[<short caption>]{<long caption>\label{<label>}}
+\begin{tabular}{r|r}
+<col1> & <col2> \\ 
+\hline 
+<num1> & <num2> \\ 
+\end{tabular} 
+\end{table}
+\end{verbatim}
+The \code{<positioning>} uses the following letters to give the interpreter hints where to put the float (figure/table environment):
+\begin{description}
+\item[\code{h}] Place the float approximately here (at the same point it occurs in the source). \LaTeX~will try to honor this but may move the float if it breaks page layout or float placement constraints.
+\item[\code{t}] Place the float at the top of a page. Preferred for floats that should appear near the beginning of a page.
+\item[\code{b}] Place the float at the bottom of a page. Useful for floats that should follow surrounding text on the same page.
+\item[\code{p}] Place the float on a dedicated float page (a page containing only floats). \LaTeX~collects floats and places them together when this is used.
+\item[\code{!}] Override internal parameters \LaTeX~uses for float placement (relax constraints). This increases the chance \LaTeX~will place the float according to the other specified options.
+\item[\code{ht}] Try here first; if not possible, try top of page.
+\item[\code{hb}] Try here first; if not possible, try bottom of page.
+\item[\code{tp}] Try top of page first; if not possible, put on float page.
+\item[\code{bp}] Try bottom of page first; if not possible, put on float page.
+\item[\code{htb}] Try here first; if not possible, try top of page; if that also fails, try bottom of page. This is a common default combination balancing proximity and good page layout. \end{description}
+
+The \code{<file>} for the figure can in theory be a .jpg or .png, but a .pdf is recommended. Using \verb|\input{}| a .pgf file is also an option, however this needs more expertise in creation, but will lead to beautiful results. The \emph{width} of the file should not exceed \SI{16}{\centi\meter} (or \SI{15}{\centi\meter} if the document option \texttt{largemargins} is used). Ideally The plot itself is created so it doen't exceed the page layout and no \texttt{width} or \texttt{scale} option has to be passed to \verb|\includegraphics[<options>]{<file>}|. If a \code{<width>} has to be given, some of the following options would work: \texttt{10cm, \textbackslash textwidth, 0.8\textbackslash linewidth, etc.}\medskip
+
+The \code{<label>} can be almost any string. I like to use fig:something for figures, tab:something for tables ans sec:something for sections. With \verb+\ref{<label>}+ you can refer to a label within the text.
+
+\subsection{Abbreviations}
+This documentclass has the package \texttt{glossaries-extra} setup in a way, to handle abbreviations. Before you start using abbreviations, think about which abbreviations are really necessary. Too many abbreviations will make your text difficult to read, however some important concepts are easier to recognise when abbreviated.
+
+\subsubsection*{Setup}
+Before you use an abbreviation, you need to set it up in the head of the document (before \texttt{\textbackslash begin\{document\}}). You can do this with one simple command for each abbreviation:\\\code{\textbackslash newabbreviation\{<tag>\}\{<abbreviation>\}\{<full-text>\}}
+You have to give each abbreviation a "tag" which is an unique label by which you can call it. Then the abbreviation is the short form (e.g. B.Sc.) and the full text is the non-abbreviated word or term (e.g. Bachelor of Science). You can add some optional arguments, which you find in the manual: \url{https://ctan.org/pkg/glossaries-extra}\medskip
+
+\noindent Example:
+\begin{verbatim}
+\documentclass[11pt]{IAUthesis}
+\newabbreviation{bsc}{B.Sc.}{Bachelor of Science}
+\glssetwidest{B.Sc.}
+\begin{document}
+\maketitle\glsresetall
+\chapter{First Part}
+\end{verbatim}
+
+\subsubsection*{Using Abbreviations}\glsreset{bsc}
+The package will keep track of your abbreviations and write out the entire term with the abbreviation in parenthesis, the first time you use it. You use an abbreviation with \code{\textbackslash gls\{<tag>\}}, e.g. \code{\textbackslash gls\{bsc\}} which will produce: \gls{bsc} However, any usage thereafter will produce: \gls{bsc}\bigskip
+
+\noindent There are some important commands to handle your abbreviations:
+\begin{description}
+\item[\code{\textbackslash gls\{<tag>\}}] This will insert the abbreviation into the text where this command is used.
+\item[\code{\textbackslash glspl\{<tag>\}}] Same as \texttt{\textbackslash gls\{<tag>\}} but plural form.
+\item[\code{\textbackslash Gls\{<tag>\}}] Same as \textbackslash gls\{<tag>\} but ensures a capital letter at the start.
+\item[\code{\textbackslash Glspl\{<tag>\}}] Same as \textbackslash glspl\{<tag>\} but ensures a capital letter at the start.
+\item[\code{\textbackslash glsreset\{<tag>\}}] Resets the abbreviation, so that its next usage will appear as the first again.
+\item[\code{\textbackslash glsresetall}] Same as \texttt{\textbackslash glsreset\{<tag>\}} but for all abbreviations.
+\item[\code{\textbackslash glssetwidest\{<abbreviation>\}}] This will set the maximum abbreviation width for the list of abbreviations. Example: \texttt{\textbackslash glssetwidest\{B.Sc.\}}
+\end{description}
+
+\subsubsection*{List of Abbreviations}
+The list of abbreviations is typically the first thing in the appendix. It can be displayed by using the command \code{
+\textbackslash printnoidxglossary[title=\{\textbackslash abbrtitle\}]}. Example:
+\begin{verbatim}
+\cleardoublepage\appendix\pagestyle{appendix}
+\printnoidxglossary[title={\abbrtitle}]
+\end{verbatim}
+\subsection{Numbers, Values, and Units}
+To handle units properly this documentclass makes use of the package \code{siunitx}. This package primarily provides the following commands:
+\begin{description}
+\item[\code{\textbackslash SI\{<number>\}\{<unit>\}}] This command should be used everywhere when you give a number with a unit. The number can also include an error. Examples:
+
+\verb|\SI{9.81}{\meter\per\square\second}| returns: \SI{9.81}{\meter\per\square\second}
+
+\verb|\SI{54.3+-2.1}{\degree N}| returns: \SI{5.43+-.21}{\degree N}
+\item[\code{\textbackslash SIrange\{<start>\}\{<end>\}\{<unit>\}}] This will create a range with a unit:
+
+\verb|\SIrange{5e3}{7er}{\kelvin}| returns: \SIrange{5e3}{7e3}{\kelvin}
+\item[\code{\textbackslash si\{<unit>\}}] Will only display a unit: \verb|\si{\celsius}| returns: \si{\celsius}
+\item[\code{\textbackslash num\{<number>\}}] Will display a number: 
+
+\verb|\num{2.7315e2}| returns: \num{2.7315e2}
+
+\verb|\num{3.141+-.008}| returns: \num{3.14+-.01}
+\end{description}
+For more information refer to the manual: \url{https://ctan.org/pkg/siunitx}
+\subsection{Quotes}
+This documentclass uses the \texttt{csquotes} package by default and will automatically change \verb|"text"| to "text". For further commands and information refer to the manual: \url{https://ctan.org/pkg/csquotes}
+
+\subsection{Notes and ToDos (todonotes)}
+Sometimes you are in the flow of writing and want to make a note, to remind you to look up a source. The package \code{todonotes} makes this quite easy. Please refer to the documentclass options for further information (Section \ref{sec:dco}).
+
+\cleardoublepage\appendix\pagestyle{appendix}
+\printnoidxglossary[title={\abbrtitle}]
+
+\chapter{Document Template}
+\begin{verbatim}
+\documentclass[11pt, todonotes]{IAUthesis}
+
+% document informations
+\title{<title>}
+\author{<author>}
+\date{<hand-in date>}
+\firstreviewer{<first reviewer name>}
+\secondreviewer{<second reviewer name>}
+\thesistype{e.g. Master Thesis}
+\thesisdegree{e.g. B.Sc. Meteorology}
+\acknowledgements{<acknowledgements>}
+\abstracttext{<abstracttext>}
+
+% references
+\addbibresource{library.bib}
+
+% colors
+\definecolor{hotpink}{rgb}{1.00, 0.00, 0.83}
+
+% abbreviations
+\newabbreviation{bsc}{B.Sc.}{Bachelor of Science}
+\glssetwidest{B.Sc.~~} % The tildes produce some extra space.
+
+\begin{document}
+\maketitle\glsresetall
+\chapter{<first chapter title>}
+This is my introduction. 
+This template was created by \citet{IAUthesis}. 
+This is the "first paragraph".
+
+This is the second paragraph, directly following the first \smallskip
+
+This paragraph has a small distance to the previous. \medskip
+
+This one has a medium distance.\bigskip
+
+This paragraph has a big distance to the previous. 
+Isn’t that lovely? \todo[color=hotpink]{add source}
+
+\chapter{Methodology}
+These are interesting methods.
+
+\section{First Method}
+I did this. \Glspl{bsc} is the plural of \gls{bsc} when using abbreviations.
+
+\subsection{A Detail}
+This is part of the first method.
+
+\subsection{Another Detail}\glsreset{bsc}
+Also belongs to the first method. 
+Here I have reset the \gls{bsc} abbreviations so it shows long again.
+\cleardoublepage
+
+\section{Second Method}
+I also did this \citep{IAUthesis}. 
+Don't refer to Figure \ref{fig:label} (it is \SI{5}{\centi\meter} wide).
+Rather look at Table \ref{tab:label}!
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=5cm]{GU-Logo-blau-gross.png}
+\caption[<short caption>]{<long caption>\citep{GUlogo}\label{fig:label}}
+\end{figure}
+\begin{table}[htbp]
+\centering
+\caption[<short caption>]{<long caption>\label{tab:label}}
+\begin{tabular}{r|r}
+<col1> & <col2> \\
+\hline
+<num1> & <num2> \\
+\end{tabular}
+\end{table}
+
+\chapter{Discussion}
+This is the last part of my main content.
+Hereafter, only the appendix follows.
+
+\cleardoublepage\pagestyle{appendix}\appendix
+\printnoidxglossary[title={\abbrtitle}]
+
+\chapter{Additional Material}
+Here I can add as many figures, tables, and as much code as I want.
+Anything my heart desires.
+
+\printbibliography[heading=bibnumbered, title={\bibtitle}]
+
+\listoftodos
+\end{document}
+\end{verbatim}
+
+\printbibliography[heading=bibnumbered, title={\bibtitle}]
+
+{\listoftodos\thispagestyle{plain}}
+\end{document}
